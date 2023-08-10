@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notizblock</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="renderNotes()">
+    <div id="inner-body"> <!-- div für "overflow: hidden" (funktioniert für Handy nicht direkt im Body) -->
+        <header>
+            <div id="burger-menu" onclick="toggleNav()">
+                <img src="img/menu-4-48_gray.png">
+            </div>
+
+            <div class="logo-and-title">
+                <div class="logo-bg">
+                    <img src="img/idea-32_white.png">
+                </div>
+                <div>
+                    <h1>Notes</h1>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <img id="search-icon" src="img/search-13-32_gray.png" onclick="search()">
+                <input id="search-input" type="search" name="q" placeholder="Search" title="" required>
+            </div>
+        </header>
+
+        <nav>
+            <div id="nav-icons">
+                <div id="note-icon" class="nav-icon" onmouseenter="addHoverBackgroundNav('note-icon', 'nav-notes')"
+                    onmouseleave="removeHoverBackgroundNav('note-icon', 'nav-notes')"
+                    onclick="renderNotes(); hideNav()">
+                    <img src="img/idea-32_gray.png">
+                </div>
+                <div id="trash-icon" class="nav-icon" onmouseenter="addHoverBackgroundNav('trash-icon', 'nav-trash')"
+                    onmouseleave="removeHoverBackgroundNav('trash-icon', 'nav-trash')"
+                    onclick="renderNotes(trashNotes); hideNav()">
+                    <img src="img/delete-32_gray.png">
+                </div>
+            </div>
+            <div id="nav-text" class="hide-nav">
+                <span id="nav-notes" class="nav-text-span"
+                    onmouseenter="addHoverBackgroundNav('note-icon', 'nav-notes')"
+                    onmouseleave="removeHoverBackgroundNav('note-icon', 'nav-notes')"
+                    onclick="renderNotes(); hideNav()">Notes</span>
+                <span id="nav-trash" class="nav-text-span"
+                    onmouseenter="addHoverBackgroundNav('trash-icon', 'nav-trash')"
+                    onmouseleave="removeHoverBackgroundNav('trash-icon', 'nav-trash')"
+                    onclick="renderNotes(trashNotes); hideNav()">Trash</span>
+            </div>
+        </nav>
+
+        <div id="content">
+            <div id="input-note" class="input-note">
+                <input id="input-note-title" class="input-note-title" placeholder="Title" title="">
+                <textarea id="input-note-text" class="input-note-text" placeholder="Write a note" rows="5" title=""
+                    required></textarea>
+                <div class="btn-container">
+                    <button type="submit" class="btn text-btn" onclick="addNote()">Save</button>
+                </div>
+            </div>
+
+            <div id="notes-container" class="notes-container"></div>
+
+        </div>
+
+        <div id="gray-screen-container" class="gray-screen d-none"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
